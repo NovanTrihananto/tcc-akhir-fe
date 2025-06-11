@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/homepage";
 import DetailBarangPage from "./pages/detailbarang";
-import Navbar from "./components/navbar";
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import AddBarangPage from "./pages/addbarang";
@@ -19,7 +18,6 @@ const AdminRoute = ({ children }) => {
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<LoginPage />} />
