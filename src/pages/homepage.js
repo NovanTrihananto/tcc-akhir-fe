@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BarangList from "../components/Baranglist";
 import { AuthContext } from "../service/authcontext";
 
 const HomePage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     // Gunakan 'section' untuk padding standar dan 'has-background-light' untuk warna latar

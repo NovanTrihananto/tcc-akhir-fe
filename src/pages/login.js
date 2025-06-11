@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import API from "../service/api";
 import { AuthContext } from "../service/authcontext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -9,12 +9,14 @@ const LoginPage = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    
     try {
       const res = await API.post("/login", form);
       login(res.data.data);
