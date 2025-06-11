@@ -47,7 +47,7 @@ const BarangList = () => {
                 }}
               >
                 <img
-                  src={`http://localhost:5000/uploads/${item.Img}`}
+                  src={`https://betcc-700231807331.us-central1.run.app/uploads/${item.Img}`}
                   alt={item.Nama}
                   style={{
                     width: "100%",

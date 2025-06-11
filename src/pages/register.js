@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
+      await axios.post("https://betcc-700231807331.us-central1.run.app/users", {
         name,
         email,
         gender,
