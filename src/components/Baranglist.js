@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import API from "../service/api";
 import { Link } from "react-router-dom";
 
-// Ambil role dari localStorage (atau ganti sesuai implementasi kamu)
 const getUserRole = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   return user?.role || "user";
@@ -32,52 +31,69 @@ const BarangList = () => {
   };
 
   return (
-    <div className="barang-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  {barang.map((item) => (
-    <div
-      key={item.id}
-      className="border rounded-lg p-4 shadow hover:shadow-md transition duration-300"
-    >
-      {/* Gambar Barang */}
-      <img
-        src={`http://localhost:5000/uploads/${item.Img}`}
-        alt={item.Nama}
-        className="w-full h-48 object-cover rounded mb-2"
-      />
+    <div className="columns is-multiline">
+      {barang.map((item) => (
+        <div key={item.id} className="column is-12-mobile is-6-tablet is-4-desktop">
+          <div className="card" style={{ height: "100%" }}>
+            {/* Gambar barang */}
+            <div className="card-image">
+              <figure
+                className="image"
+                style={{
+                  height: "200px",
+                  overflow: "hidden",
+                  borderTopLeftRadius: "8px",
+                  borderTopRightRadius: "8px",
+                }}
+              >
+                <img
+                  src={`http://localhost:5000/uploads/${item.Img}`}
+                  alt={item.Nama}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    borderRadius: "inherit",
+                  }}
+                />
+              </figure>
+            </div>
 
-      <h3 className="text-lg font-semibold">{item.Nama}</h3>
-      <p className="text-gray-600">{item.Deskripsi}</p>
-      <p className="font-bold">Harga: Rp{item.harga.toLocaleString()}</p>
+            {/* Konten */}
+            <div className="card-content">
+              <p className="title is-5 has-text-weight-semibold">{item.Nama}</p>
+              <p className="subtitle is-6 has-text-grey">{item.Deskripsi}</p>
+              <p className="has-text-weight-bold has-text-success">
+                Rp {item.harga.toLocaleString()}
+              </p>
+            </div>
 
-      <div className="mt-3 space-x-2">
-        {role === "admin" ? (
-          <>
-            <Link
-              to={`/admin/edit-barang/${item.id}`}
-              className="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded"
-            >
-              Edit
-            </Link>
-            <button
-              onClick={() => handleDelete(item.id)}
-              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-            >
-              Hapus
-            </button>
-          </>
-        ) : (
-          <Link
-            to={`/barang/${item.id}`}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-          >
-            Beli Sekarang
-          </Link>
-        )}
-      </div>
+            {/* Tombol aksi */}
+<footer className="card-footer">
+              {role === "admin" ? (
+                <>
+                  <Link to={`/edit-barang/${item.id}`} className="card-footer-item has-text-warning">
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="card-footer-item has-text-danger"
+                    style={{ border: "none", background: "none", cursor: "pointer" }}
+                  >
+                    Hapus
+                  </button>
+                </>
+              ) : (
+                <Link to={`/barang/${item.id}`} className="card-footer-item has-text-link">
+                  Beli Sekarang
+                </Link>
+              )}
+            </footer>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
-
   );
 };
 

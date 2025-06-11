@@ -7,31 +7,51 @@ const HomePage = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">Toko Online</h1>
-            {user && (
-              <p className="text-gray-600 text-sm mt-1">
-                Halo, <span className="font-medium capitalize">{user.role}</span>!
-              </p>
-            )}
+    // Gunakan 'section' untuk padding standar dan 'has-background-light' untuk warna latar
+    <section className="section has-background-light" style={{ minHeight: 'calc(100vh - 80px)' }}> 
+      {/* 'container' untuk membatasi lebar konten dan membuatnya terpusat */}
+      <div className="container">
+        
+        {/* Gunakan 'level' untuk menyusun item secara horizontal (kiri dan kanan) */}
+        <div className="level mb-6">
+          {/* Sisi kiri dari level */}
+          <div className="level-left">
+            <div className="level-item">
+              <div>
+                {/* Gunakan 'title' dan 'subtitle' untuk hierarki teks yang jelas */}
+                <h1 className="title is-2 has-text-grey-darker">Toko Online</h1>
+                {user && (
+                  <p className="subtitle is-5 has-text-grey">
+                    Halo, <strong className="has-text-weight-semibold success" style={{textTransform: 'capitalize'}}>{user.role}</strong>!
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
 
-          {user?.role === "admin" && (
-            <Link
-              to="/tambah-barang"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition duration-200"
-            >
-              + Tambah Barang
-            </Link>
-          )}
+          {/* Sisi kanan dari level */}
+          <div className="level-right">
+            <div className="level-item">
+              {/* Tombol akan muncul di sini jika user adalah admin */}
+              {user?.role === "admin" && (
+                <Link
+                  to="/tambah-barang"
+                  className="button is-primary is-medium" // Kelas tombol Bulma
+                >
+                  <span className="icon">
+                    <i className="fas fa-plus"></i>
+                  </span>
+                  <span>Tambah Barang</span>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
 
+        {/* Komponen daftar barang tetap sama */}
         <BarangList role={user?.role || "user"} />
       </div>
-    </div>
+    </section>
   );
 };
 

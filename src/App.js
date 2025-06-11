@@ -9,6 +9,9 @@ import AddBarangPage from "./pages/addbarang";
 import EditBarangPage from "./pages/editbarang";
 import { AuthContext } from "./service/authcontext";
 import { useContext } from "react";
+import "bulma/css/bulma.min.css"; 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 // Komponen khusus untuk route admin
 const AdminRoute = ({ children }) => {

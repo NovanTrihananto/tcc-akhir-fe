@@ -1,9 +1,19 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
+  let storedUser = null;
+  try {
+    const userData = localStorage.getItem("user");
+    if (userData && userData !== "undefined") {
+      storedUser = JSON.parse(userData);
+    }
+  } catch (error) {
+    console.error("Error parsing user data from localStorage:", error);
+  }
+
+  const [user, setUser] = useState(storedUser);
 
   const login = (userData) => {
     setUser(userData);
