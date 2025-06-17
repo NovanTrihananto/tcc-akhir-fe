@@ -44,7 +44,7 @@ const Navbar = () => {
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <div className="navbar-item">
-          {user.role === "admin" ? (
+          {user?.role === "admin" ? (
             <>
               <Link to="/homepage" className="navbar-item">
                 Beranda
