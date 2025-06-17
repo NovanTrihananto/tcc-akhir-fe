@@ -47,7 +47,7 @@ const BarangList = () => {
                 }}
               >
                 <img
-                  src={`https://betcc-700231807331.us-central1.run.app/uploads/${item.Img}`}
+                  src={`https://storage.googleapis.com/d01_7/${item.Img}`}
                   alt={item.Nama}
                   style={{
                     width: "100%",

@@ -44,7 +44,7 @@ const Navbar = () => {
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <div className="navbar-item">
-          {user ? (
+          {user.role === "admin" ? (
             <>
               <Link to="/homepage" className="navbar-item">
                 Beranda
@@ -55,8 +55,11 @@ const Navbar = () => {
               </>
           ) : 
           (
-            <Link>
+            <>
+            <Link to="/homepage" className="navbar-item">
+                Beranda
             </Link>
+            </>
           )}
           </div>
         </div>
