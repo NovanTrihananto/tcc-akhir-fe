@@ -124,13 +124,13 @@ const DetailBarangPage = () => {
               </div>
 
               {/* Purchase Form */}
-              <div className="box has-background-light">
+              <div className="box has-background-dark">
                 <h3 className="title is-5 has-text-centered">
                   <span className="icon-text">
                     <span className="icon">
                       <i className="fas fa-shopping-cart"></i>
                     </span>
-                    <span>Beli Produk</span>
+                    <span className="has-text-danger">Beli Produk</span>
                   </span>
                 </h3>
 

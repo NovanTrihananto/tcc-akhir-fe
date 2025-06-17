@@ -10,6 +10,8 @@ import { AuthContext } from "./service/authcontext";
 import { useContext } from "react";
 import "bulma/css/bulma.min.css"; 
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Navbar from "./components/navbar";
+import NotaAdminPage from "./pages/notaPage";
 
 
 // Komponen khusus untuk route admin
@@ -21,6 +23,7 @@ const AdminRoute = ({ children }) => {
 function App() {
   return (
     <Router>
+      <Navbar/>
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<LoginPage />} />
@@ -38,6 +41,16 @@ function App() {
             </AdminRoute>
           }
         />
+        
+        <Route
+          path="/nota"
+          element={
+            <AdminRoute>
+              <NotaAdminPage/>
+            </AdminRoute>
+          }
+        />
+
         <Route
           path="/edit-barang/:id"
           element={

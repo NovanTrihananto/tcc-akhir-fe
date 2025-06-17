@@ -31,7 +31,7 @@ const BarangList = () => {
   };
 
   return (
-    <div className="columns is-multiline">
+    <div className="columns is-multiline mb-5">
       {barang.map((item) => (
         <div key={item.id} className="column is-12-mobile is-6-tablet is-4-desktop">
           <div className="card" style={{ height: "100%" }}>
@@ -70,7 +70,7 @@ const BarangList = () => {
             </div>
 
             {/* Tombol aksi */}
-<footer className="card-footer">
+            <footer className="card-footer">
               {role === "admin" ? (
                 <>
                   <Link to={`/edit-barang/${item.id}`} className="card-footer-item has-text-warning">

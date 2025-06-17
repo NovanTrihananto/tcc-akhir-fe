@@ -18,13 +18,13 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     closeMobileMenu();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
-    <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+    <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link to="/" className="navbar-item" onClick={closeMobileMenu}>
+        <Link to={user ? "/homepage" : "/login"} className="navbar-item" onClick={closeMobileMenu}>
           <strong style={{ fontSize: "1.5rem" }}>AplikasiKu</strong>
         </Link>
 
@@ -43,11 +43,22 @@ const Navbar = () => {
 
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         <div className="navbar-start">
-          {user && (
-            <Link to="/homepage" className="navbar-item" onClick={closeMobileMenu}>
-              Beranda
+          <div className="navbar-item">
+          {user ? (
+            <>
+              <Link to="/homepage" className="navbar-item">
+                Beranda
+              </Link>
+              <Link to="/nota" className="navbar-item">
+                Nota
+              </Link>
+              </>
+          ) : 
+          (
+            <Link>
             </Link>
           )}
+          </div>
         </div>
 
         <div className="navbar-end">
@@ -63,7 +74,7 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="buttons">
-                <div className="navbar-item has-text-white">Halo, {user.name}</div>
+                <div className="navbar-item has-text-white">Halo, {user.role}</div>
                 <button className="button is-light" onClick={handleLogout}>
                   Logout
                 </button>

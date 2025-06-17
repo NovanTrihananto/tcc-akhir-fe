@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
+import API from "../service/api.js";
 
 const RegisterPage = () => {
   const [name, setNama] = useState("");
@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://betcc-700231807331.us-central1.run.app/users", {
+      await API.post("users", {
         name,
         email,
         gender,

@@ -44,7 +44,7 @@ const AddBarangPage = () => {
   return (
     <section className="section">
       <div className="container">
-        <div className="columns is-centered">
+        <div className="columns is-centered m-5">
           <div className="column is-8-desktop is-10-tablet">
             <div className="box">
               <h1 className="title is-3 has-text-centered mb-6">
